@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_explore_black_24dp" />
+                    app:imageUrl="@{player.imageUrl}"/>
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -53,7 +53,6 @@
                 android:layout_margin="8dp"
                 android:ellipsize="end"
                 android:lineSpacingExtra="2sp"
-                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:maxLines="2"
                 android:text="@{player.fullName}"
@@ -70,7 +69,6 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="2sp"
                 android:maxLines="1"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:text="@{player.height}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +84,6 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="2sp"
                 android:maxLines="1"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:text="@{player.team.full_name}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +99,6 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="2sp"
                 android:maxLines="1"
-                android:textColor="@color/black"
                 android:textSize="14sp"
                 android:text="@{player.team.city}"
                 app:layout_constraintBottom_toBottomOf="parent"

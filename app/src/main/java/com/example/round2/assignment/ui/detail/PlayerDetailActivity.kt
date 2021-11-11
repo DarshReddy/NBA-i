@@ -24,14 +24,15 @@ class PlayerDetailActivity : AppCompatActivity() {
         val playerData = intent.getParcelableExtra<Data>("player")
         binding.apply {
             setVariable(BR.player, playerData)
-            if (playerData != null) {
-                playerDetailImage.load(playerData.imageUrl) {
-                    listener(
-                        onError = { _: ImageRequest, _: Throwable ->
-                            playerDetailImage.load(R.drawable.ic_baseline_account_box_24) }
-                    )
-                }
-            }
         }
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

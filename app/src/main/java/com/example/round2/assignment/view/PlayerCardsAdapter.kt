@@ -35,19 +35,13 @@ class PlayerCardsAdapter(
     override fun onBindViewHolder(holder: PlayerCardsViewHolder, position: Int) {
         with(holder.binding) {
             val playerData = getItem(position)
-            setVariable(BR.player, playerData)
             if (playerData != null) {
                 playerData.imageUrl = playerImageUrl+"${playerData.last_name}/${playerData.first_name}"
-                playerImage.load(playerData.imageUrl) {
-                    listener(
-                        onError = { _: ImageRequest, _: Throwable ->
-                            playerImage.load(R.drawable.ic_baseline_account_box_24) }
-                    )
-                }
                 root.setOnClickListener {
                     onCardClicked(playerData)
                 }
             }
+            setVariable(BR.player, playerData)
         }
     }
 
