@@ -1,8 +1,8 @@
 package com.example.round2.assignment
 
 import android.os.Bundle
-import android.view.View
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -10,13 +10,19 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.round2.assignment.databinding.ActivityMainBinding
+import com.example.round2.assignment.utils.gone
+import com.example.round2.assignment.utils.toggleTheme
+import com.example.round2.assignment.utils.visible
 import com.example.round2.assignment.view.OnScrollListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), OnScrollListener {
 
     private lateinit var binding: ActivityMainBinding
+
+    private var themeSwitch = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +48,23 @@ class MainActivity : AppCompatActivity(), OnScrollListener {
     }
 
     override fun setNavBarVisibility(visibility: Boolean) {
-        if (visibility) binding.navView.visibility = View.VISIBLE
-        else binding.navView.visibility = View.GONE
+        if (visibility) binding.navView.visible()
+        else binding.navView.gone()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.theme_cta -> {
+                resources.toggleTheme()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

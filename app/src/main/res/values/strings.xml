@@ -6,4 +6,5 @@
     <string name="player_details">Player Details</string>
     <string name="loading">Loading…</string>
     <string name="error_text">Api failed please try again after sometime</string>
+    <string name="toggle_theme">Toggle theme</string>
 </resources>
