@@ -3,6 +3,7 @@ package com.example.round2.assignment.ui.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
+import coil.request.ImageRequest
 import com.example.round2.assignment.BR
 import com.example.round2.assignment.R
 import com.example.round2.assignment.data.models.Data
@@ -25,7 +26,10 @@ class PlayerDetailActivity : AppCompatActivity() {
             setVariable(BR.player, playerData)
             if (playerData != null) {
                 playerDetailImage.load(playerData.imageUrl) {
-                    placeholder(R.drawable.ic_baseline_account_box_24)
+                    listener(
+                        onError = { _: ImageRequest, _: Throwable ->
+                            playerDetailImage.load(R.drawable.ic_baseline_account_box_24) }
+                    )
                 }
             }
         }
