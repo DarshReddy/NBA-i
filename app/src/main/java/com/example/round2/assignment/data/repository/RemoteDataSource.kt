@@ -2,17 +2,16 @@ package com.example.round2.assignment.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.round2.assignment.data.api.APIHelperImpl
 import com.example.round2.assignment.data.models.Data
 
 class RemoteDataSource(
-    private val apiService: APIHelperImpl
+    private val assignmentRepository: AssignmentRepository
 ): PagingSource<Int, Data>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Data> {
         try {
             val currentLoadingPageKey = params.key ?: 1
-            val response = apiService.getPlayersData(currentLoadingPageKey)
+            val response = assignmentRepository.getPlayersData(currentLoadingPageKey)
             val responseData = mutableListOf<Data>()
             val data = response.body()?.data
             if (data != null) {

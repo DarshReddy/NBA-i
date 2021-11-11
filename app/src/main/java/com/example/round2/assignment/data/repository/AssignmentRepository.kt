@@ -1,11 +1,13 @@
 package com.example.round2.assignment.data.repository
 
-import com.example.round2.assignment.data.api.APIHelper
+import com.example.round2.assignment.data.api.APIService
 import javax.inject.Inject
 
-class AssignmentRepository @Inject constructor(private val apiHelper: APIHelper) {
+class AssignmentRepository @Inject constructor(
+    private val apiService: APIService
+) {
 
-    suspend fun getPlayersData(pageNumber: Int) = apiHelper.getPlayersData(pageNumber)
+    suspend fun getPlayersData(pageNumber: Int) = apiService.getPlayersData(pageNumber)
 
     fun getStaticData(): List<String> {
 

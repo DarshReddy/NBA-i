@@ -1,8 +1,6 @@
 package com.example.round2.assignment.di.module
 
 import com.example.round2.assignment.BuildConfig
-import com.example.round2.assignment.data.api.APIHelper
-import com.example.round2.assignment.data.api.APIHelperImpl
 import com.example.round2.assignment.data.api.APIService
 import dagger.Module
 import dagger.Provides
@@ -43,8 +41,4 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit) = retrofit.create(APIService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideApiHelper(apiHelper: APIHelperImpl): APIHelper = apiHelper
 }
