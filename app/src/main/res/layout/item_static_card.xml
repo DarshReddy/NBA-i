@@ -17,13 +17,13 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView"
+                style="@style/Theme.Assignment.Text.Title1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:minLines="3"
                 android:layout_margin="8dp"
                 android:lineSpacingExtra="2sp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="The toy brought back fond memories of being lost in the rain forest." />

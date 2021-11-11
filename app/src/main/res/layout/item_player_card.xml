@@ -48,12 +48,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPlayerName"
+                style="@style/Theme.Assignment.Text.Title2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="2sp"
-                android:textSize="16sp"
                 android:maxLines="2"
                 android:text="@{player.fullName}"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
@@ -63,13 +62,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPlayerHeight"
+                style="@style/Theme.Assignment.Text.Subtitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="2sp"
-                android:maxLines="1"
-                android:textSize="14sp"
                 android:text="@{player.height}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
@@ -78,13 +75,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPlayerTeam"
+                style="@style/Theme.Assignment.Text.Subtitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="2sp"
-                android:maxLines="1"
-                android:textSize="14sp"
                 android:text="@{player.team.full_name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
@@ -93,13 +88,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPlayerCity"
+                style="@style/Theme.Assignment.Text.Subtitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="6dp"
                 android:ellipsize="end"
-                android:lineSpacingExtra="2sp"
-                android:maxLines="1"
-                android:textSize="14sp"
                 android:text="@{player.team.city}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

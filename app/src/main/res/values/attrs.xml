@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorText" format="reference|color" />
+    <attr name="colorSubText" format="reference|color" />
+    <attr name="colorTextSolid" format="reference|color" />
+    <attr name="colorTextSolid_80" format="reference|color" />
+    <attr name="colorTextHint" format="reference|color" />
+    <attr name="colorTextJewel" format="reference|color" />
+    <attr name="colorTextPrime" format="reference|color" />
+    <attr name="colorTextOrange" format="reference|color" />
+    <attr name="colorNegative" format="reference|color" />
+    <attr name="colorBodyLink" format="reference|color" />
+    <attr name="colorTextInfo" format="reference|color" />
+    <attr name="colorErrorState" format="reference|color" />
+    <attr name="colorSuccessState" format="reference|color" />
+    <attr name="colorLine" format="reference|color" />
+    <attr name="colorButtonTransparentHighlight" format="reference|color" />
+    <attr name="colorTextDisabled" format="reference|color" />
+</resources>

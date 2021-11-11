@@ -15,7 +15,7 @@ class ImageViewBindingAttributes {
             view.load(url) {
                 listener(
                     onError = { _: ImageRequest, _: Throwable ->
-                        view.load(R.drawable.ic_baseline_account_box_24)
+                        view.load(R.drawable.ic_account_box_24dp)
                     }
                 )
             }
