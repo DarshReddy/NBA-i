@@ -1,8 +1,7 @@
-package com.example.round2.assignment.di
+package com.example.round2.assignment
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class Assignment: Application() {
-}
+class AssignmentApplication : Application()
