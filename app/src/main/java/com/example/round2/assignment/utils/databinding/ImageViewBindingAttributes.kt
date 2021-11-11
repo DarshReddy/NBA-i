@@ -1,5 +1,6 @@
 package com.example.round2.assignment.utils.databinding
 
+import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
@@ -15,6 +16,7 @@ class ImageViewBindingAttributes {
                 placeholder(R.drawable.ic_player)
                 crossfade(true)
                 error(R.drawable.ic_player)
+                Log.d("IMAGE LOADING FLOW", "Loading image - $url")
             }
         }
     }

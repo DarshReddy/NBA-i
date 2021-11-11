@@ -2,6 +2,7 @@ package com.example.round2.assignment.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,17 +62,25 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.listData.collectLatest {
                 playerCardsAdapter.submitData(it)
+                Log.d("API FLOW", "Players added")
             }
         }
         playerCardsAdapter.addLoadStateListener {
-            if (it.refresh == LoadState.Loading) {
-                binding.progressBar.visible()
-            } else if (it.refresh is LoadState.Error) {
-                binding.progressBar.gone()
-                binding.errorText.text = resources.getString(R.string.error_text)
-            } else {
-                binding.progressBar.gone()
-                binding.errorText.gone()
+            when (it.refresh) {
+                LoadState.Loading -> {
+                    binding.progressBar.visible()
+                    Log.d("API FLOW", "Players loading")
+                }
+                is LoadState.Error -> {
+                    binding.progressBar.gone()
+                    binding.errorText.text = resources.getString(R.string.error_text)
+                    Log.d("API FLOW", "Players error")
+                }
+                else -> {
+                    binding.progressBar.gone()
+                    binding.errorText.gone()
+                    Log.d("API FLOW", "Players success")
+                }
             }
         }
     }
@@ -98,5 +107,25 @@ class HomeFragment : Fragment() {
 
     private fun instantiateOnScrollListener(context: FragmentActivity) {
         interfaceOnScrollListener = context as OnScrollListener
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("LIFECYCLE FLOW", "Fragment paused")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("LIFECYCLE FLOW", "Fragment resumed")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("LIFECYCLE FLOW", "Fragment stopped")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("LIFECYCLE FLOW", "Fragment destroyed")
     }
 }

@@ -1,6 +1,7 @@
 package com.example.round2.assignment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -66,5 +67,30 @@ class MainActivity : AppCompatActivity(), OnScrollListener {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("LIFECYCLE FLOW", "Activity paused")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("LIFECYCLE FLOW", "Activity resumed")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("LIFECYCLE FLOW", "Activity stopped")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("LIFECYCLE FLOW", "Activity destroyed")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("LIFECYCLE FLOW", "Activity restarted")
     }
 }
