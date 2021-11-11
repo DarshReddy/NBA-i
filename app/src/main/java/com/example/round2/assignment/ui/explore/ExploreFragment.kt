@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.round2.assignment.databinding.FragmentExploreBinding
+import com.example.round2.assignment.utils.addScrollDirectionListener
 import com.example.round2.assignment.view.OnScrollListener
 import com.example.round2.assignment.view.StaticCardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +29,7 @@ class ExploreFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         activity?.let {
             instantiateOnScrollListener(it)
@@ -48,16 +47,7 @@ class ExploreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.exploreRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(false)
-                } else if (dy < 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(true)
-                }
-            }
-        })
+        binding.exploreRecycler.addScrollDirectionListener(interfaceOnScrollListener)
     }
 
     override fun onDestroyView() {

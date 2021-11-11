@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Assignment</string>
+    <string name="app_name">NBA-i</string>
     <string name="title_home">Home</string>
     <string name="title_explore">Explore</string>
     <string name="title_profile">Profile</string>
     <string name="player_details">Player Details</string>
+    <string name="loading">Loading…</string>
+    <string name="error_text">Api failed please try again after sometime</string>
 </resources>

@@ -11,14 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.round2.assignment.R
 import com.example.round2.assignment.data.models.Data
 import com.example.round2.assignment.databinding.FragmentHomeBinding
 import com.example.round2.assignment.ui.detail.PlayerDetailActivity
+import com.example.round2.assignment.utils.addScrollDirectionListener
+import com.example.round2.assignment.utils.gone
+import com.example.round2.assignment.utils.visible
 import com.example.round2.assignment.view.OnScrollListener
 import com.example.round2.assignment.view.PlayerCardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -39,7 +41,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         activity?.let {
             instantiateOnScrollListener(it)
@@ -63,9 +65,13 @@ class HomeFragment : Fragment() {
         }
         playerCardsAdapter.addLoadStateListener {
             if (it.refresh == LoadState.Loading) {
-                binding.progressBar.visibility = View.VISIBLE
+                binding.progressBar.visible()
+            } else if (it.refresh is LoadState.Error) {
+                binding.progressBar.gone()
+                binding.errorText.text = resources.getString(R.string.error_text)
             } else {
-                binding.progressBar.visibility = View.GONE
+                binding.progressBar.gone()
+                binding.errorText.gone()
             }
         }
     }
@@ -76,16 +82,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = playerCardsAdapter
         }
-        binding.homeRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(false)
-                } else if (dy < 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(true)
-                }
-            }
-        })
+        binding.homeRecycler.addScrollDirectionListener(interfaceOnScrollListener)
     }
 
     private fun onCardClicked(player: Data) {

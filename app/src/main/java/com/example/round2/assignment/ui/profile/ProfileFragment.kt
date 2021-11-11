@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.round2.assignment.databinding.FragmentProfileBinding
+import com.example.round2.assignment.utils.addScrollDirectionListener
 import com.example.round2.assignment.view.OnScrollListener
 import com.example.round2.assignment.view.StaticCardsAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +29,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         activity?.let {
             instantiateOnScrollListener(it)
@@ -53,16 +52,7 @@ class ProfileFragment : Fragment() {
             binding.profileRecycler.adapter = staticAdapter
         })
 
-        binding.profileRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(false)
-                } else if (dy < 0) {
-                    interfaceOnScrollListener.setNavBarVisibility(true)
-                }
-            }
-        })
+        binding.profileRecycler.addScrollDirectionListener(interfaceOnScrollListener)
     }
 
     override fun onDestroyView() {

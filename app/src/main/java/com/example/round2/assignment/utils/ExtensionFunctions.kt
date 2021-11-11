@@ -1,28 +1,30 @@
 package com.example.round2.assignment.utils
 
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.transition.Fade
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.round2.assignment.view.OnScrollListener
 
-fun View.slideVisibility(visibility: Boolean, durationTime: Long = 500) {
-    val transition = Slide(Gravity.BOTTOM)
-    transition.apply {
-        duration = durationTime
-        addTarget(this@slideVisibility)
-    }
-    TransitionManager.beginDelayedTransition(this.parent as ViewGroup, transition)
-    this.isVisible = visibility
+fun RecyclerView.addScrollDirectionListener(interfaceOnScrollListener: OnScrollListener) {
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            if (dy > 0) {
+                interfaceOnScrollListener.setNavBarVisibility(false)
+            } else if (dy < 0) {
+                interfaceOnScrollListener.setNavBarVisibility(true)
+            }
+        }
+    })
 }
 
-fun View.fadeVisibility(visibility: Int, duration: Long = 200) {
-    val transition: Transition = Fade()
-    transition.duration = duration
-    transition.addTarget(this)
-    TransitionManager.beginDelayedTransition(this.parent as ViewGroup, transition)
-    this.visibility = visibility
+fun View.visible() {
+    visibility = View.VISIBLE
+}
+
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
+fun View.gone() {
+    visibility = View.GONE
 }
